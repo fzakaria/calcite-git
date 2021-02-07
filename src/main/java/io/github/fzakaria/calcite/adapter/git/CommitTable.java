@@ -31,16 +31,16 @@ public class CommitTable extends AbstractTable implements ScannableTable {
     @Override
     public RelDataType getRowType(RelDataTypeFactory typeFactory) {
         return typeFactory.builder()
-                .add("id", SqlTypeName.VARCHAR)
-                .add("message", SqlTypeName.VARCHAR)
-                .add("summary", SqlTypeName.VARCHAR)
-                .add("author_name", SqlTypeName.VARCHAR)
-                .add("author_email", SqlTypeName.VARCHAR)
-                .add("author_date", SqlTypeName.TIMESTAMP)
-                .add("committer_name", SqlTypeName.VARCHAR)
-                .add("committer_email", SqlTypeName.VARCHAR)
-                .add("committer_date", SqlTypeName.TIMESTAMP)
-                .add("parents", typeFactory.createArrayType(
+                .add("ID", SqlTypeName.VARCHAR)
+                .add("MESSAGE", SqlTypeName.VARCHAR)
+                .add("SUMMARY", SqlTypeName.VARCHAR)
+                .add("AUTHOR_NAME", SqlTypeName.VARCHAR)
+                .add("AUTHOR_EMAIL", SqlTypeName.VARCHAR)
+                .add("AUTHOR_DATE", SqlTypeName.TIMESTAMP)
+                .add("COMMITTER_NAME", SqlTypeName.VARCHAR)
+                .add("COMMITTER_EMAIL", SqlTypeName.VARCHAR)
+                .add("COMMITTER_DATE", SqlTypeName.TIMESTAMP)
+                .add("PARENTS", typeFactory.createArrayType(
                         typeFactory.createSqlType(SqlTypeName.VARCHAR), -1)
                 )
                 .build();
