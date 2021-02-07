@@ -1,9 +1,9 @@
 package io.github.fzakaria.calcite.adapter.git;
 
+import com.google.common.collect.ImmutableMap;
 import org.apache.calcite.schema.Table;
 import org.apache.calcite.schema.impl.AbstractSchema;
 import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.util.FS;
 
 import java.io.File;
 import java.io.IOException;
@@ -45,6 +45,6 @@ public class GitSchema extends AbstractSchema {
 
     @Override
     protected Map<String, Table> getTableMap() {
-        return super.getTableMap();
+        return ImmutableMap.of("COMMITS", new CommitTable(git));
     }
 }
