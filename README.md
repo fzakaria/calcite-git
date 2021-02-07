@@ -23,22 +23,20 @@ proper driver loaded pointing to the current directory.
 [INFO] --------------------------------[ jar ]---------------------------------
 [INFO] 
 [INFO] --- exec-maven-plugin:1.6.0:java (default-cli) @ calcite-git ---
-15:36:57.853 [sqlline.SqlLine.main()] WARN  i.g.f.calcite.adapter.git.GitDriver - No directory provided, defaulting to /home/fmzakari/code/github.com/fzakaria/calcite-git
+15:52:12.237 [sqlline.SqlLine.main()] WARN  i.g.f.calcite.adapter.git.GitDriver - No directory provided, defaulting to /home/fmzakari/code/github.com/fzakaria/calcite-git
 Transaction isolation level TRANSACTION_REPEATABLE_READ is not supported. Default (TRANSACTION_NONE) will be used instead.
 sqlline version 1.9.0
-0: jdbc:git:> select * from commits;
-.
-..
-...
-+------------------------------------------+------------------+-------------------+--------------+
-|                    id                    |     message      |      summary      |  author_name |
-+------------------------------------------+------------------+-------------------+--------------+
-| ad6c8068e70f98ae7c41d779b0b1e3cf006788e2 | Initial commit   | Initial commit
-   | Farid Zakari |
-| 504132ce9bf52d7ce5d1d507f6ac8368590b78e5 | Added git ignore | Added git ignore
- | Farid Zakari |
-+------------------------------------------+------------------+-------------------+--------------+
-2 rows selected (1.093 seconds)
+0: jdbc:git:> select id, author_name, author_date from commits;
++------------------------------------------+---------------+-------------------+
+|                    ID                    |  AUTHOR_NAME  |      AUTHOR_DATE  |
++------------------------------------------+---------------+-------------------+
+| cbd71f6421597c2e1c1a4dbe098c653fdd11628a | Farid Zakaria | 2021-02-07 23:51: |
+| ccd0020a85f2b719ae89d37b5cd059321fbcb98d | Farid Zakaria | 2021-02-07 23:43: |
+| 7b3eb02c4f7cb7a91f82726d56add680c7e80d28 | Farid Zakaria | 2021-02-07 23:40: |
+| ad6c8068e70f98ae7c41d779b0b1e3cf006788e2 | Farid Zakaria | 2021-02-07 21:12: |
+| 504132ce9bf52d7ce5d1d507f6ac8368590b78e5 | Farid Zakaria | 2021-02-07 21:12: |
++------------------------------------------+---------------+-------------------+
+5 rows selected (1.24 seconds)
 0: jdbc:git:> 
 ```
 
