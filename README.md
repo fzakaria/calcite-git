@@ -3,7 +3,11 @@
 This is a [Calcite](https://calcite.apache.org/) adapter for [Git](https://git-scm.com/) that uses
 the [JGit](https://www.eclipse.org/jgit/) library.
 
-> JGit is an EDL (new-style BSD) licensed, lightweight, pure Java library implementing the Git version control system
+> JGit is a lightweight, pure Java library implementing the Git version control system
+
+This is adapter is similar in spirit to [GitCommitsTableFunction](https://github.com/apache/calcite/blob/d9a81b88ad561e7e4cedae93e805e0d7a53a7f1a/plus/src/main/java/org/apache/calcite/adapter/os/GitCommitsTableFunction.java)
+which his included in the Calcite repository, however by using JGit, the goal is to be able to expose more powerful
+planning optimizations, and simpler code.
 
 ## Demo
 
@@ -51,3 +55,4 @@ try (Connection connection = DriverManager.getConnection("jdbc:git:", info)) {
 ```
 
 Please consult the tests for additional examples.
+
