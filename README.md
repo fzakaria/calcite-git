@@ -1,9 +1,12 @@
 # Calcite Git Adapter
 
+![Maven Central](https://img.shields.io/maven-central/v/com.github.fzakaria/calcite-git)
 ![GitHub](https://img.shields.io/github/license/fzakaria/calcite-git)
+[![javadoc](https://javadoc.io/badge2/com.github.fzakaria/calcite-git/javadoc.svg)](https://javadoc.io/doc/com.github.fzakaria/calcite-git)
 
 This is a [Calcite](https://calcite.apache.org/) adapter for [Git](https://git-scm.com/) that uses
 the [JGit](https://www.eclipse.org/jgit/) library.
+
 
 > JGit is a lightweight, pure Java library implementing the Git version control system
 
