@@ -14,7 +14,19 @@
     <calcite.version>1.26.0</calcite.version>
     <jgit.version>5.10.0.202012080955-r</jgit.version>
   </properties>
- 
+
+  <developers>
+    <developer>
+      <id>fzakaria</id>
+      <name>Farid Zakaria</name>
+      <email>farid.m.zakaria@gmail.com</email>
+      <roles>
+        <role>Author</role>
+      </roles>
+      <organization>https://fzakaria.com</organization>
+    </developer>
+  </developers>
+
   <dependencies>
     <dependency>
       <groupId>org.apache.calcite</groupId>
