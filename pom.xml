@@ -4,7 +4,7 @@
  
   <groupId>com.github.fzakaria</groupId>
   <artifactId>calcite-git</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>0.1</version>
   <description>A git calcite adapter.</description>
  
   <properties>
