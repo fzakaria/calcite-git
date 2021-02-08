@@ -12,6 +12,7 @@
     <maven.compiler.target>1.8</maven.compiler.target>
 
     <calcite.version>1.26.0</calcite.version>
+    <jgit.version>5.10.0.202012080955-r</jgit.version>
   </properties>
  
   <dependencies>
@@ -23,7 +24,7 @@
     <dependency>
       <groupId>org.eclipse.jgit</groupId>
       <artifactId>org.eclipse.jgit</artifactId>
-      <version>5.10.0.202012080955-r</version>
+      <version>${jgit.version}</version>
     </dependency>
     <dependency>
       <groupId>com.google.guava</groupId>

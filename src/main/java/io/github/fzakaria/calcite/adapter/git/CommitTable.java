@@ -40,7 +40,7 @@ public class CommitTable extends AbstractTable implements ScannableTable {
                 .add("COMMITTER_NAME", SqlTypeName.VARCHAR)
                 .add("COMMITTER_EMAIL", SqlTypeName.VARCHAR)
                 .add("COMMITTER_DATE", SqlTypeName.TIMESTAMP)
-                .add("PARENTS", typeFactory.createArrayType(
+                .add("PARENTS", typeFactory.createMultisetType(
                         typeFactory.createSqlType(SqlTypeName.VARCHAR), -1)
                 )
                 .build();

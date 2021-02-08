@@ -51,6 +51,30 @@ public class Commit {
         this.parents = parents;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public Person getAuthor() {
+        return author;
+    }
+
+    public Person getCommitter() {
+        return committer;
+    }
+
+    public Set<String> getParents() {
+        return parents;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
