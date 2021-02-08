@@ -2,7 +2,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
  
-  <groupId>io.github.fzakaria</groupId>
+  <groupId>com.github.fzakaria</groupId>
   <artifactId>calcite-git</artifactId>
   <version>1.0-SNAPSHOT</version>
   <description>A git calcite adapter.</description>
@@ -116,7 +116,7 @@
         <configuration>
           <mainClass>sqlline.SqlLine</mainClass>
           <classpathScope>test</classpathScope>
-          <commandlineArgs>-n ' ' -p ' ' -u jdbc:git: -d io.github.fzakaria.calcite.adapter.git.GitDriver</commandlineArgs>
+          <commandlineArgs>-n ' ' -p ' ' -u jdbc:git: -d com.github.fzakaria.calcite.adapter.git.GitDriver</commandlineArgs>
         </configuration>
       </plugin>
       <plugin>

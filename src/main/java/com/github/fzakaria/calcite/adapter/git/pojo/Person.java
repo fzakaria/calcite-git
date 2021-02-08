@@ -1,4 +1,4 @@
-package io.github.fzakaria.calcite.adapter.git.pojo;
+package com.github.fzakaria.calcite.adapter.git.pojo;
 
 import com.google.common.base.MoreObjects;
 

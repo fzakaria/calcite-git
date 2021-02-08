@@ -1,1 +1,1 @@
-io.github.fzakaria.calcite.adapter.git.GitDriver
+com.github.fzakaria.calcite.adapter.git.GitDriver

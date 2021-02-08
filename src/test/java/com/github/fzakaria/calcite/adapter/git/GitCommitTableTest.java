@@ -1,6 +1,6 @@
-package io.github.fzakaria.calcite.adapter.git;
+package com.github.fzakaria.calcite.adapter.git;
 
-import io.github.fzakaria.calcite.adapter.git.pojo.Commit;
+import com.github.fzakaria.calcite.adapter.git.pojo.Commit;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.MergeCommand;
 import org.eclipse.jgit.api.errors.GitAPIException;
@@ -18,7 +18,7 @@ import java.sql.Statement;
 import java.util.List;
 import java.util.Properties;
 
-import static io.github.fzakaria.calcite.adapter.git.ResultSetConsumers.commits;
+import static com.github.fzakaria.calcite.adapter.git.ResultSetConsumers.commits;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class GitCommitTableTest {

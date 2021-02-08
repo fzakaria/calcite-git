@@ -1,4 +1,4 @@
-package io.github.fzakaria.calcite.adapter.git;
+package com.github.fzakaria.calcite.adapter.git;
 
 import org.apache.calcite.avatica.DriverVersion;
 import org.apache.calcite.jdbc.CalciteConnection;

@@ -1,4 +1,4 @@
-package io.github.fzakaria.calcite.adapter.git;
+package com.github.fzakaria.calcite.adapter.git;
 
 import com.google.common.collect.ImmutableList;
 import org.apache.calcite.DataContext;

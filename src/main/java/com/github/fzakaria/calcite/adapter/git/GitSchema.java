@@ -1,4 +1,4 @@
-package io.github.fzakaria.calcite.adapter.git;
+package com.github.fzakaria.calcite.adapter.git;
 
 import com.google.common.collect.ImmutableMap;
 import org.apache.calcite.schema.Table;

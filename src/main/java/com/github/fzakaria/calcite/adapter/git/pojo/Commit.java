@@ -1,4 +1,4 @@
-package io.github.fzakaria.calcite.adapter.git.pojo;
+package com.github.fzakaria.calcite.adapter.git.pojo;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.Sets;
@@ -6,7 +6,6 @@ import com.google.common.collect.Sets;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Struct;
-import java.time.Instant;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Set;
