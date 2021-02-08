@@ -1,5 +1,7 @@
 # Calcite Git Adapter
 
+![GitHub](https://img.shields.io/github/license/fzakaria/calcite-git)
+
 This is a [Calcite](https://calcite.apache.org/) adapter for [Git](https://git-scm.com/) that uses
 the [JGit](https://www.eclipse.org/jgit/) library.
 
@@ -52,12 +54,15 @@ sqlline version 1.9.0
 
 If you would like to use it directly in your code with _jdbc_ here is a minimal example.
 ```java
-Properties info = new Properties();
-try (Connection connection = DriverManager.getConnection("jdbc:git:", info)) {
-    try (Statement statement = connection.createStatement()) {
-        final ResultSet resultSet = statement.executeQuery("select * from commits limit 10");
-        final List<Commit> commits = allCommitsFromResultSet(resultSet);
-        assertThat(commits).isNotEmpty();
+public class Main {
+    public static void main(String[] args) {
+       final Properties info = new Properties();
+        try (Connection connection = DriverManager.getConnection("jdbc:git:", info)) {
+            try (Statement statement = connection.createStatement()) {
+                final ResultSet resultSet = statement.executeQuery("select * from commits limit 10");
+                // take a peek at the tests for how to parse the ResultSet
+            }
+        }
     }
 }
 ```
