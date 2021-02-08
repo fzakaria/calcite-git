@@ -41,7 +41,7 @@ public class CommitTable extends AbstractTable implements ScannableTable {
                         typeFactory.createSqlType(SqlTypeName.VARCHAR),
                         typeFactory.createSqlType(SqlTypeName.TIMESTAMP)
                 ),
-                ImmutableList.of("name", "email", "date")
+                ImmutableList.of("NAME", "EMAIL", "CREATED_AT")
         );
         return typeFactory.builder()
                 .add("ID", SqlTypeName.VARCHAR)

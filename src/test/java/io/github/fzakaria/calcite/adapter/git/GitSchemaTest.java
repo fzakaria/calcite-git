@@ -43,7 +43,7 @@ public class GitSchemaTest {
             ResultSet resultSet = connection.getMetaData().getColumns(null, "git", "COMMITS", null);
             List<Object> columns = columns(resultSet, ImmutableMap.of("COLUMN_NAME", String.class, "TYPE_NAME", String.class));
             assertThat(columns).contains("ID", "MESSAGE", "SUMMARY", "AUTHOR", "COMMITTER", "PARENTS");
-            assertThat(columns).contains("RecordType(VARCHAR NOT NULL name, VARCHAR NOT NULL email, TIMESTAMP(0) NOT NULL date) NOT NULL");
+            assertThat(columns).contains("RecordType(VARCHAR NOT NULL NAME, VARCHAR NOT NULL EMAIL, TIMESTAMP(0) NOT NULL CREATED_AT) NOT NULL");
         }
     }
 

@@ -23,21 +23,31 @@ proper driver loaded pointing to the current directory.
 [INFO] --------------------------------[ jar ]---------------------------------
 [INFO] 
 [INFO] --- exec-maven-plugin:1.6.0:java (default-cli) @ calcite-git ---
-15:52:12.237 [sqlline.SqlLine.main()] WARN  i.g.f.calcite.adapter.git.GitDriver - No directory provided, defaulting to /home/fmzakari/code/github.com/fzakaria/calcite-git
+20:32:33.601 [sqlline.SqlLine.main()] WARN  i.g.f.calcite.adapter.git.GitDriver - No directory provided, defaulting to /home/fmzakari/code/github.com/fzakaria/calcite-git
 Transaction isolation level TRANSACTION_REPEATABLE_READ is not supported. Default (TRANSACTION_NONE) will be used instead.
 sqlline version 1.9.0
-0: jdbc:git:> select id, author_name, author_date from commits;
-+------------------------------------------+---------------+-------------------+
-|                    ID                    |  AUTHOR_NAME  |      AUTHOR_DATE  |
-+------------------------------------------+---------------+-------------------+
-| cbd71f6421597c2e1c1a4dbe098c653fdd11628a | Farid Zakaria | 2021-02-07 23:51: |
-| ccd0020a85f2b719ae89d37b5cd059321fbcb98d | Farid Zakaria | 2021-02-07 23:43: |
-| 7b3eb02c4f7cb7a91f82726d56add680c7e80d28 | Farid Zakaria | 2021-02-07 23:40: |
-| ad6c8068e70f98ae7c41d779b0b1e3cf006788e2 | Farid Zakaria | 2021-02-07 21:12: |
-| 504132ce9bf52d7ce5d1d507f6ac8368590b78e5 | Farid Zakaria | 2021-02-07 21:12: |
-+------------------------------------------+---------------+-------------------+
-5 rows selected (1.24 seconds)
-0: jdbc:git:> 
+0: jdbc:git:> !tables
++-----------+-------------+------------+--------------+---------+----------+------------+-----------+---------------------------+------+
+| TABLE_CAT | TABLE_SCHEM | TABLE_NAME |  TABLE_TYPE  | REMARKS | TYPE_CAT | TYPE_SCHEM | TYPE_NAME | SELF_REFERENCING_COL_NAME | REF_ |
++-----------+-------------+------------+--------------+---------+----------+------------+-----------+---------------------------+------+
+|           | git         | COMMITS    | TABLE        |         |          |            |           |                           |      |
+|           | metadata    | COLUMNS    | SYSTEM TABLE |         |          |            |           |                           |      |
+|           | metadata    | TABLES     | SYSTEM TABLE |         |          |            |           |                           |      |
++-----------+-------------+------------+--------------+---------+----------+------------+-----------+---------------------------+------+
+0: jdbc:git:> select c.id, c.author.created_at, c.author.name from commits as c;
++------------------------------------------+-----------------------+---------------+
+|                    ID                    |      CREATED_AT       |     NAME      |
++------------------------------------------+-----------------------+---------------+
+| bcb92091ef526f24908761d867d6e08b9a83ca5f | 2021-02-08 04:10:02.0 | Farid Zakaria |
+| 6827d9e82290c81422b77eeb9d25fccdea164c3c | 2021-02-08 02:29:39.0 | Farid Zakaria |
+| 9e0acbd0afe66eb2dc2c376fa95456460dd5e128 | 2021-02-07 23:52:58.0 | Farid Zakaria |
+| cbd71f6421597c2e1c1a4dbe098c653fdd11628a | 2021-02-07 23:51:50.0 | Farid Zakaria |
+| ccd0020a85f2b719ae89d37b5cd059321fbcb98d | 2021-02-07 23:43:24.0 | Farid Zakaria |
+| 7b3eb02c4f7cb7a91f82726d56add680c7e80d28 | 2021-02-07 23:40:16.0 | Farid Zakaria |
+| ad6c8068e70f98ae7c41d779b0b1e3cf006788e2 | 2021-02-07 21:12:45.0 | Farid Zakaria |
+| 504132ce9bf52d7ce5d1d507f6ac8368590b78e5 | 2021-02-07 21:12:25.0 | Farid Zakaria |
++------------------------------------------+-----------------------+---------------+
+8 rows selected (0.937 seconds)
 ```
 
 If you would like to use it directly in your code with _jdbc_ here is a minimal example.
