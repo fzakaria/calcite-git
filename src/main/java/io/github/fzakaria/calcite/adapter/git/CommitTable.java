@@ -1,10 +1,13 @@
 package io.github.fzakaria.calcite.adapter.git;
 
+import com.google.common.collect.ImmutableList;
 import org.apache.calcite.DataContext;
+import org.apache.calcite.adapter.java.JavaTypeFactory;
 import org.apache.calcite.linq4j.Enumerable;
 import org.apache.calcite.linq4j.Linq4j;
 import org.apache.calcite.rel.type.RelDataType;
 import org.apache.calcite.rel.type.RelDataTypeFactory;
+import org.apache.calcite.rel.type.StructKind;
 import org.apache.calcite.schema.ScannableTable;
 import org.apache.calcite.schema.impl.AbstractTable;
 import org.apache.calcite.sql.type.SqlTypeName;
@@ -13,6 +16,8 @@ import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.lib.AnyObjectId;
 
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
@@ -30,16 +35,20 @@ public class CommitTable extends AbstractTable implements ScannableTable {
 
     @Override
     public RelDataType getRowType(RelDataTypeFactory typeFactory) {
+        final RelDataType personStruct = typeFactory.createStructType(
+                ImmutableList.of(
+                        typeFactory.createSqlType(SqlTypeName.VARCHAR),
+                        typeFactory.createSqlType(SqlTypeName.VARCHAR),
+                        typeFactory.createSqlType(SqlTypeName.TIMESTAMP)
+                ),
+                ImmutableList.of("name", "email", "date")
+        );
         return typeFactory.builder()
                 .add("ID", SqlTypeName.VARCHAR)
                 .add("MESSAGE", SqlTypeName.VARCHAR)
                 .add("SUMMARY", SqlTypeName.VARCHAR)
-                .add("AUTHOR_NAME", SqlTypeName.VARCHAR)
-                .add("AUTHOR_EMAIL", SqlTypeName.VARCHAR)
-                .add("AUTHOR_DATE", SqlTypeName.TIMESTAMP)
-                .add("COMMITTER_NAME", SqlTypeName.VARCHAR)
-                .add("COMMITTER_EMAIL", SqlTypeName.VARCHAR)
-                .add("COMMITTER_DATE", SqlTypeName.TIMESTAMP)
+                .add("AUTHOR", personStruct)
+                .add("COMMITTER", personStruct)
                 .add("PARENTS", typeFactory.createMultisetType(
                         typeFactory.createSqlType(SqlTypeName.VARCHAR), -1)
                 )
@@ -55,12 +64,16 @@ public class CommitTable extends AbstractTable implements ScannableTable {
                                     commit.getId().getName(),
                                     commit.getShortMessage(),
                                     commit.getFullMessage(),
-                                    commit.getAuthorIdent().getName(),
-                                    commit.getAuthorIdent().getEmailAddress(),
-                                    commit.getAuthorIdent().getWhen().getTime(),
-                                    commit.getCommitterIdent().getName(),
-                                    commit.getCommitterIdent().getEmailAddress(),
-                                    commit.getCommitterIdent().getWhen().getTime(),
+                                    new Object[] {
+                                        commit.getAuthorIdent().getName(),
+                                        commit.getAuthorIdent().getEmailAddress(),
+                                        commit.getAuthorIdent().getWhen().toInstant().toEpochMilli()
+                                    },
+                                    new Object[] {
+                                        commit.getCommitterIdent().getName(),
+                                        commit.getCommitterIdent().getEmailAddress(),
+                                        commit.getCommitterIdent().getWhen().toInstant().toEpochMilli()
+                                    },
                                     Stream.of(commit.getParents()).map(AnyObjectId::getName).toArray()
                             }).collect(Collectors.toList());
             return Linq4j.asEnumerable(commits);

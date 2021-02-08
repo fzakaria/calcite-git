@@ -2,6 +2,7 @@ package io.github.fzakaria.calcite.adapter.git;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import io.github.fzakaria.calcite.adapter.git.pojo.Commit;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

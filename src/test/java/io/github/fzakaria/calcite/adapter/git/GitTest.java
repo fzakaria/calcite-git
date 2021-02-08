@@ -1,6 +1,6 @@
 package io.github.fzakaria.calcite.adapter.git;
 
-import com.google.common.collect.ImmutableList;
+import io.github.fzakaria.calcite.adapter.git.pojo.Commit;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.junit.jupiter.api.BeforeEach;

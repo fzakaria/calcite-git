@@ -1,7 +1,11 @@
-package io.github.fzakaria.calcite.adapter.git;
+package io.github.fzakaria.calcite.adapter.git.pojo;
 
 import com.google.common.base.MoreObjects;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Struct;
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.Objects;
 
@@ -12,12 +16,23 @@ public class Person {
 
     private final String name;
     private final String email;
-    private final Instant when;
+    private final Instant date;
 
-    public Person(String name, String email, Instant when) {
+    /**
+     * Create a {@link Person} from a {@link ResultSet}
+     */
+    public static Person fromSqlStruct(Struct struct) throws SQLException {
+        Object[] attributes = struct.getAttributes();
+        String name = (String) attributes[0];
+        String email = (String) attributes[1];
+        Instant date = ((Timestamp) attributes[2]).toInstant();
+        return new Person(name, email, date);
+    }
+
+    public Person(String name, String email, Instant date) {
         this.name = name;
         this.email = email;
-        this.when = when;
+        this.date = date;
     }
 
     public String getName() {
@@ -28,8 +43,8 @@ public class Person {
         return email;
     }
 
-    public Instant getWhen() {
-        return when;
+    public Instant getDate() {
+        return date;
     }
 
     @Override
@@ -39,12 +54,12 @@ public class Person {
         Person person = (Person) o;
         return Objects.equals(name, person.name) &&
                 Objects.equals(email, person.email) &&
-                Objects.equals(when, person.when);
+                Objects.equals(date, person.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, email, when);
+        return Objects.hash(name, email, date);
     }
 
     @Override
@@ -52,7 +67,7 @@ public class Person {
         return MoreObjects.toStringHelper(this)
                 .add("name", name)
                 .add("email", email)
-                .add("when", when)
+                .add("when", date)
                 .toString();
     }
 }

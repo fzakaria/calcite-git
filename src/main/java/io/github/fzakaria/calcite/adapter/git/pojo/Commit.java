@@ -1,11 +1,11 @@
-package io.github.fzakaria.calcite.adapter.git;
+package io.github.fzakaria.calcite.adapter.git.pojo;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.Sets;
 
-import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Struct;
 import java.time.Instant;
 import java.util.Arrays;
 import java.util.Objects;
@@ -20,23 +20,22 @@ public class Commit {
     private final Person committer;
     private final Set<String> parents;
 
+    /**
+     * Create a {@link Commit} from a {@link ResultSet}
+     */
     public static Commit fromResultSet(ResultSet resultSet) throws SQLException {
         String id = resultSet.getString("id");
         String message = resultSet.getString("message");
         String summary = resultSet.getString("summary");
-        String authorName = resultSet.getString("author_name");
-        String authorEmail = resultSet.getString("author_email");
-        Instant authorDate = resultSet.getTimestamp("author_date").toInstant();
-        String committeName = resultSet.getString("committer_name");
-        String committerEmail = resultSet.getString("committer_email");
-        Instant committerDate = resultSet.getTimestamp("committer_date").toInstant();
+        Person author = Person.fromSqlStruct(resultSet.getObject("author", Struct.class));
+        Person committer = Person.fromSqlStruct(resultSet.getObject("committer", Struct.class));
         Object[] parents = (Object[]) resultSet.getArray("parents").getArray();
         return new Commit(
                 id,
                 message,
                 summary,
-                new Person(authorName, authorEmail, authorDate),
-                new Person(committeName, committerEmail, committerDate),
+                author,
+                committer,
                 Sets.newHashSet(Arrays.copyOf(parents, parents.length, String[].class))
         );
     }
